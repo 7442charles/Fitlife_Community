@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= meta.title %></title>
+<meta name="description" content="<%= meta.description %>">
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="p-10">
+<h1 class="text-3xl mb-4">Blog</h1>
+<% blogs.forEach(b=>{ %>
+<div class="border p-4 mb-3">
+<h2 class="font-bold"><%= b.title %></h2>
+<div><%- b.content %></div>
+</div>
+<% }) %>
+
+<div class="flex gap-2 mt-4">
+<% for(let i=1;i<=pages;i++){ %>
+<a href="/?page=<%= i %>" class="<%= i===page?'font-bold':'' %>"><%= i %></a>
+<% } %>
+</div>
+</body>
+</html>
