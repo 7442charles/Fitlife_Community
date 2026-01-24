@@ -39,6 +39,8 @@ app.use((req,res,next)=>{
 app.use('/', require('./routes/client'));
 app.use('/auth', require('./routes/auth'));
 app.use('/admin', require('./routes/admin'));
+app.use('/', require('./routes/pages'));
+
 
 sequelize.sync().then(()=>{
   app.listen(3000, ()=>console.log('Running on http://localhost:3000'));
