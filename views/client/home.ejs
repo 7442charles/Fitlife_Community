@@ -1,23 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <%- include('../partials/seo') %>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Title -->
+  <title>Fitlife Community | Fitness, Wellness & Healthy Living</title>
+
+  <!-- SEO Meta -->
+  <meta 
+    name="description" 
+    content="Fitlife Community is a holistic gym and wellness community empowering individuals and communities through fitness, healthy living, and sustainable wellbeing."
+  />
+  <meta name="keywords" content="gym, fitness community, wellness, healthy living, workouts, fitlife" />
+  <meta name="author" content="Fitlife Community" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fitlife Community | Fitness, Wellness & Healthy Living" />
+  <meta 
+    property="og:description" 
+    content="Join Fitlife Community — a holistic fitness and wellness community empowering individuals and communities to live healthier lives."
+  />
+  <meta property="og:image" content="/images/logo.png" />
+  <meta property="og:url" content="https://fitlifecommunity.com" />
+  <meta property="og:site_name" content="Fitlife Community" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fitlife Community | Fitness, Wellness & Healthy Living" />
+  <meta 
+    name="twitter:description" 
+    content="Empowering individuals and communities through holistic fitness, wellness, and healthy living."
+  />
+  <meta name="twitter:image" content="/images/logo.png" />
+
+  <!-- Favicon (using logo) -->
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
+
+  <!-- Theme Color (Mobile browsers) -->
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Tailwind CSS (Browser CDN) -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4" defer></script>
 </head>
+
 <body class="bg-gray-50 text-gray-900">
 
   <%- include('../partials/header') %>
 
-  <section class="max-w-7xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Latest Blogs</h1>
+    <section class="relative min-h-[85vh] md:min-h-[90vh] w-full flex items-center justify-center overflow-visible lg:overflow-hidden pt-24 md:pt-0">
 
-    <% blogs.forEach(blog => { %>
-      <div class="bg-white p-4 mb-4 shadow">
-        <h2 class="text-xl font-semibold"><%= blog.title %></h2>
-        <p class="text-gray-600"><%= blog.excerpt %></p>
-      </div>
-    <% }) %>
-  </section>
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-black/60 z-10"></div>
+        <img 
+        src="/images/hero-bg.png" 
+        alt="Gym Background"
+        class="w-full h-full object-cover object-center"
+        />
+    </div>
+
+    <div class="relative z-20 max-w-7xl mx-auto px-6 text-center lg:text-left">
+        <div class="max-w-4xl">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-snug">
+            Empowering <span class="text-[#F9BC06]">individuals and communities</span>
+            through holistic fitness and wellness.
+        </h1>
+
+        <div class="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5">
+            <a href="/join" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded font-bold text-xs md:text-sm uppercase tracking-wider text-center">
+            Join the Wellness Community
+            </a>
+
+            <a href="/donate" class="w-full sm:w-auto border-2 border-[#F9BC06] text-[#F9BC06] px-8 py-4 rounded font-bold text-xs md:text-sm uppercase tracking-wider text-center">
+            Send My Donation
+            </a>
+        </div>
+        </div>
+    </div>
+    </section>
 
   <%- include('../partials/footer') %>
 

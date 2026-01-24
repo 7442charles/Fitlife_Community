@@ -1,12 +1,90 @@
-<nav class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between">
-    <a href="/" class="font-bold">LOGO</a>
-    <div class="space-x-4">
-      <a href="/">Home</a>
-      <a href="/about-us">About</a>
-      <a href="/blog">Blog</a>
-      <a href="/gallery">Gallery</a>
-      <a href="/contact-us">Contact</a>
+<header class="bg-[#F9BC06] w-full font-sans relative z-[100]">
+  <nav class="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4 md:px-12">
+    
+    <a href="/" class="flex items-center group">
+      <div class="w-16 h-16 md:w-20 md:h-20 lg:w-28 lg:h-28 transition-all duration-300">
+        <img src="/images/fitlife_community.png" alt="FitLife Logo" class="w-full h-full object-contain" />
+      </div>
+    </a>
+
+    <ul class="hidden lg:flex items-center space-x-6 xl:space-x-10 text-[13px] font-bold text-black">
+      <li><a href="/" class="hover:opacity-70 transition-opacity">HOME</a></li>
+      <li><a href="/about" class="hover:opacity-70 transition-opacity">ABOUT US</a></li>
+      <li><a href="/programs" class="hover:opacity-70 transition-opacity">PROGRAMS</a></li>
+      <li><a href="/impact" class="hover:opacity-70 transition-opacity">OUR IMPACT</a></li>
+      <li><a href="/blogs" class="hover:opacity-70 transition-opacity">OUR BLOGS</a></li>
+      <li><a href="/contacts" class="hover:opacity-70 transition-opacity">CONTACTS</a></li>
+    </ul>
+
+    <div class="hidden lg:block">
+      <a href="/donate" class="bg-[#1A1A1A] text-[#F9BC06] px-6 py-3 text-[11px] font-black rounded hover:bg-black transition-colors">
+        MAKE MY DONATION
+      </a>
+    </div>
+
+    <button id="menu-toggle" class="lg:hidden text-black focus:outline-none relative z-[110]">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="burger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[280px] sm:w-[350px] bg-[#F9BC06] z-[105] shadow-2xl translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    
+    <div class="flex justify-end p-6">
+      <button id="menu-close" class="text-black">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="flex-grow px-8 py-4 overflow-y-auto">
+      <ul class="flex flex-col space-y-6 text-lg font-black text-black mb-10">
+        <li><a href="/" class="block border-b border-black/10 pb-2">HOME</a></li>
+        <li><a href="/about" class="block border-b border-black/10 pb-2">ABOUT US</a></li>
+        <li><a href="/programs" class="block border-b border-black/10 pb-2">PROGRAMS</a></li>
+        <li><a href="/impact" class="block border-b border-black/10 pb-2">OUR IMPACT</a></li>
+        <li><a href="/blogs" class="block border-b border-black/10 pb-2">OUR BLOGS</a></li>
+        <li><a href="/contacts" class="block border-b border-black/10 pb-2">CONTACTS</a></li>
+      </ul>
+      <a href="/donate" class="block w-full text-center bg-[#1A1A1A] text-[#F9BC06] py-4 text-sm font-black rounded shadow-lg">
+        MAKE MY DONATION
+      </a>
+    </div>
+
+    <div class="p-6 border-t border-black/10 text-center">
+      <p class="text-[10px] font-bold text-black/60 uppercase tracking-widest leading-tight">
+        Developed and maintained by<br>
+        <span class="text-black text-xs">CHED SYSTEMS</span>
+      </p>
     </div>
   </div>
-</nav>
+
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 hidden z-[102] transition-opacity duration-300 opacity-0"></div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('menu-toggle');
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('menu-overlay');
+
+  function openDrawer() {
+    menu.classList.remove('translate-x-full');
+    overlay.classList.remove('hidden');
+    setTimeout(() => overlay.classList.add('opacity-100'), 10);
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when open
+  }
+
+  function closeDrawer() {
+    menu.classList.add('translate-x-full');
+    overlay.classList.remove('opacity-100');
+    setTimeout(() => overlay.classList.add('hidden'), 300);
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  }
+
+  toggleBtn.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+</script>
