@@ -4,7 +4,7 @@
 
   <div class="relative w-full">
     
-    <div class="absolute inset-0 z-0 bg-[#1A1A1A]" 
+    <div class="absolute inset-0 z-0 bg-[#1A1A1A] overflow-hidden" 
          style="clip-path: ellipse(150% 100% at 50% 100%);">
       <img src="/images/footer-bg.png" alt="Footer Background" 
            class="absolute bottom-0 w-full h-[70%] object-cover opacity-20 z-0">
@@ -22,7 +22,7 @@
         <p class="text-black text-[11px] md:text-xs font-semibold mb-4 opacity-90">Get the latest news and resources sent to your email.</p>
         
         <form class="flex flex-col sm:flex-row items-center gap-3 max-w-xl mx-auto">
-          <input type="email" placeholder="Email Address" class="w-full bg-white border-none rounded-md px-4 py-3 text-sm text-gray-700 outline-none" required>
+          <input type="email" placeholder="Email Address" class="w-full bg-white border-none rounded-md px-4 py-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-black" required>
           <button type="submit" class="w-full sm:w-auto bg-[#1A1A1A] text-white px-6 py-3 rounded-md font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all whitespace-nowrap">
             Subscribe
           </button>
@@ -30,39 +30,52 @@
       </div>
     </div>
 
-    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pb-16 pt-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start text-center md:text-left">
+    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pb-8 pt-4">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start text-center md:text-left border-b border-white/10 pb-12">
         
         <div class="flex flex-col items-center md:items-start">
-          <img src="/images/footer-logo.png" alt="Logo" class="h-16 mb-6 object-contain">
+          <img src="/images/footer-logo.png" alt="FitLife Communities" class="h-16 mb-6 object-contain">
           <div class="bg-white p-2 flex gap-3 shadow-md">
-             <a href="#"><img src="/images/facebook.svg" class="w-4 h-4"></a>
-             <a href="#"><img src="/images/whatsapp.svg" class="w-4 h-4"></a>
-             <a href="#"><img src="/images/instagram.svg" class="w-4 h-4"></a>
-             <a href="#"><img src="/images/linkedin.svg" class="w-4 h-4"></a>
-             <a href="#"><img src="/images/tiktok.svg" class="w-4 h-4"></a>
+             <a href="#" class="hover:scale-110 transition-transform"><img src="/images/facebook.svg" alt="Facebook" class="w-4 h-4"></a>
+             <a href="#" class="hover:scale-110 transition-transform"><img src="/images/whatsapp.svg" alt="Whatsapp" class="w-4 h-4"></a>
+             <a href="#" class="hover:scale-110 transition-transform"><img src="/images/instagram.svg" alt="Instagram" class="w-4 h-4"></a>
+             <a href="#" class="hover:scale-110 transition-transform"><img src="/images/linkedin.svg" alt="Linkedin" class="w-4 h-4"></a>
+             <a href="#" class="hover:scale-110 transition-transform"><img src="/images/tiktok.svg" alt="Tiktok" class="w-4 h-4"></a>
           </div>
         </div>
 
         <nav class="text-white">
           <ul class="space-y-3 uppercase text-[10px] font-black tracking-widest opacity-80">
-            <li><a href="/" class="hover:text-[#F9BC06]">Home</a></li>
-            <li><a href="/about" class="hover:text-[#F9BC06]">About Us</a></li>
-            <li><a href="/programs" class="hover:text-[#F9BC06]">Our Programs</a></li>
-            <li><a href="/impact" class="hover:text-[#F9BC06]">Our Impact</a></li>
-            <li><a href="/contacts" class="hover:text-[#F9BC06]">Our Contacts</a></li>
-            <li><a href="/pillars" class="hover:text-[#F9BC06]">Our Pillars</a></li>
+            <li><a href="/" class="hover:text-[#F9BC06] transition-colors">Home</a></li>
+            <li><a href="/about" class="hover:text-[#F9BC06] transition-colors">About Us</a></li>
+            <li><a href="/programs" class="hover:text-[#F9BC06] transition-colors">Our Programs</a></li>
+            <li><a href="/impact" class="hover:text-[#F9BC06] transition-colors">Our Impact</a></li>
+            <li><a href="/contacts" class="hover:text-[#F9BC06] transition-colors">Our Contacts</a></li>
+            <li><a href="/pillars" class="hover:text-[#F9BC06] transition-colors">Our Pillars</a></li>
           </ul>
         </nav>
 
         <div class="text-white">
-          <h4 class="text-lg font-black mb-3">Join the <span class="text-[#F9BC06]">Movement.</span></h4>
-          <p class="text-gray-400 text-xs leading-relaxed mb-6">Together, we can build a future where every individual has the opportunity to heal and thrive.</p>
-          <a href="/donate" class="inline-block bg-[#064E3B] text-white px-8 py-3 rounded font-black uppercase text-[10px] tracking-widest hover:bg-green-900 transition-all">
+          <h4 class="text-lg font-black mb-3 leading-tight">Join the <span class="text-[#F9BC06]">Movement for Change.</span></h4>
+          <p class="text-gray-400 text-xs leading-relaxed mb-6 max-w-xs mx-auto md:mx-0">Together, we can build a future where every individual has the opportunity to heal and thrive.</p>
+          <a href="/donate" class="inline-block bg-[#064E3B] text-white px-8 py-3 rounded font-black uppercase text-[10px] tracking-widest hover:bg-green-900 transition-all active:scale-95">
             Send My Donation
           </a>
         </div>
+
       </div>
+
+      <div class="pt-8 flex flex-col items-center justify-center text-center gap-2 text-white/50 text-[10px] font-bold uppercase tracking-widest">
+        <p>© <span id="year"></span> All Rights Reserved Fitlife Communities</p>
+        <p>Developed and Maintained by <a href="#" class="text-[#F9BC06] hover:underline transition-all">Ched Systems</a></p>
+      </div>
+
     </div>
   </div>
 </footer>
+
+<script>
+  // Automatically update the year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
