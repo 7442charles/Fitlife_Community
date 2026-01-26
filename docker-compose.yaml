@@ -24,7 +24,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: modal_webapp
     ports:
-      - "3307:3306"
+      - "3307:3306" # for host access
     volumes:
       - mysql_data:/var/lib/mysql
     restart: unless-stopped

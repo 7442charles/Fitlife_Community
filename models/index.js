@@ -2,15 +2,22 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 require('dotenv').config();
 
-// Detect Docker
+// Detect if running inside Docker
 const isDocker = fs.existsSync('/.dockerenv');
 
+// Pick the correct DB host
+const dbHost = isDocker ? process.env.DB_HOST_DOCKER : process.env.DB_HOST_LOCAL;
+
+// Use the same DB password for local and Docker
+const dbPass = process.env.DB_PASS || '';
+
+// Create Sequelize instance
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
-  isDocker ? process.env.DB_PASS_DOCKER : process.env.DB_PASS,
+  dbPass,
   {
-    host: isDocker ? process.env.DB_HOST_DOCKER : process.env.DB_HOST,
+    host: dbHost,
     dialect: process.env.DB_DIALECT,
     logging: false,
     dialectOptions: {
