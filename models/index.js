@@ -8,14 +8,11 @@ const isDocker = fs.existsSync('/.dockerenv');
 // Pick the correct DB host
 const dbHost = isDocker ? process.env.DB_HOST_DOCKER : process.env.DB_HOST_LOCAL;
 
-// Use the same DB password for local and Docker
-const dbPass = process.env.DB_PASS || '';
-
 // Create Sequelize instance
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
-  dbPass,
+  process.env.DB_PASS || '',
   {
     host: dbHost,
     dialect: process.env.DB_DIALECT,
