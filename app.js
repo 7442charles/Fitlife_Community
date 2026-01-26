@@ -42,6 +42,9 @@ app.use('/admin', require('./routes/admin'));
 app.use('/', require('./routes/pages'));
 
 
-sequelize.sync().then(()=>{
-  app.listen(3000, ()=>console.log('Running on http://localhost:3000'));
+
+sequelize.sync().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`🚀 Running on http://localhost:${process.env.PORT}`);
+  });
 });
