@@ -28,4 +28,23 @@ router.get('/blog', async (req,res)=>{
   });
 });
 
+router.get('/programs', (req,res)=>{
+  res.render('client/programs', {
+    meta:{ title:'Programs', description:'Our programs' }
+  });
+});
+
+router.get('/our-impact', (req,res)=>{
+  res.render('client/impact', {
+    meta:{ title:'Our Impact', description:'Our impact' }
+  });
+});
+
+router.get('/make-donation', (req,res)=>{
+  res.render('client/donation', {
+    meta:{ title:'Make a Donation', description:'Support our mission' }
+  });
+});
+
+
 module.exports = router;

@@ -8,13 +8,82 @@
 
 <%- include('../partials/header') %>
 
-<section class="max-w-4xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-4">About Us</h1>
+<section class="py-20 px-6 bg-white text-center">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-black text-black mb-8">
+      About <span class="text-[#F9BC06]">Fitlife Communities</span>
+    </h2>
+    <p class="text-gray-600 text-sm md:text-base leading-relaxed font-medium">
+      FitLife Communities is a community-based initiative dedicated to advancing holistic well-being, peacebuilding, and inclusive sports development among vulnerable and underserved populations. Established in 2023, FitLife Communities uses sport, fitness, and physical activity as powerful tools for healing, social cohesion, and economic empowerment. We work at the grassroots level to create safe, inclusive, and trauma-informed spaces where individuals and communities can build physical health, emotional resilience, leadership, and peaceful coexistence.
+    </p>
+  </div>
+</section>
 
-  <p class="text-gray-700 leading-relaxed">
-    We are committed to empowering communities through fitness, wellness,
-    and sustainable programs that create long-term impact.
-  </p>
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    
+    <div class="relative pt-8">
+      <div class="absolute left-0 top-0 w-14 h-14 bg-[#F9BC06] rounded-full flex items-center justify-center border-4 border-white shadow-md z-10">
+        <img src="/images/plus.svg" alt="Vision" class="w-6 h-6 object-contain">
+      </div>
+      <div class="bg-white rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] p-8 text-left border-t-8 border-[#F9BC06]">
+        <h3 class="text-[#F9BC06] font-bold text-lg mb-3 uppercase tracking-wider">Our Vision</h3>
+        <p class="text-gray-600 text-sm leading-relaxed font-medium">
+          A healthy, peaceful, and inclusive community for all.
+        </p>
+      </div>
+    </div>
+
+    <div class="relative pt-8">
+      <div class="absolute left-0 top-0 w-14 h-14 bg-black rounded-full flex items-center justify-center border-4 border-white shadow-md z-10">
+        <img src="/images/white-man.svg" alt="Mission" class="w-6 h-6 object-contain">
+      </div>
+      <div class="bg-white rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] p-8 text-left border-t-8 border-black">
+        <h3 class="text-[#F9BC06] font-bold text-lg mb-3 uppercase tracking-wider">Our Mission</h3>
+        <p class="text-gray-600 text-sm leading-relaxed font-medium">
+          To promote physical, mental, and emotional well-being, foster peace, and support inclusive sports development through community-led fitness and sports programs.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-black text-black">Our <span class="text-[#F9BC06]">Core Values</span></h2>
+    </div>
+
+    <div class="relative flex flex-col md:flex-row rounded-3xl shadow-lg border border-gray-100">
+      
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden md:block">
+        <div class="w-16 h-16 bg-[#F9BC06] rounded-full border-4 border-white flex items-center justify-center shadow-md">
+          <img src="/images/question-mark.svg" alt="Core Values" class="w-8 h-8 object-contain">
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center space-y-6 bg-[#F3F4F6] rounded-t-3xl md:rounded-tr-none md:rounded-l-3xl overflow-hidden">
+        <div class="flex items-center gap-3">
+          <span class="text-lg font-black text-black">Inclusion</span>
+          <span class="w-2 h-2 rounded-full bg-[#F9BC06]"></span>
+          <span class="text-lg font-black text-black">Well-Being</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-lg font-black text-black">Peace</span>
+          <span class="w-2 h-2 rounded-full bg-[#F9BC06]"></span>
+          <span class="text-lg font-black text-black">Safety</span>
+        </div>
+        <div>
+          <span class="text-lg font-black text-black">Community Ownership</span>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 h-56 md:h-auto rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl overflow-hidden">
+        <img src="/images/who-is.png" alt="Community Fitness" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
 </section>
 
 <%- include('../partials/footer') %>
