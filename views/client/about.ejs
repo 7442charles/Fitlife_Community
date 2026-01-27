@@ -1,12 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include('../partials/seo') %>
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Title -->
+  <title>Fitlife Community | Fitness, Wellness & Healthy Living</title>
+
+  <!-- SEO Meta -->
+  <meta 
+    name="description" 
+    content="Fitlife Community is a holistic gym and wellness community empowering individuals and communities through fitness, healthy living, and sustainable wellbeing."
+  />
+  <meta name="keywords" content="gym, fitness community, wellness, healthy living, workouts, fitlife" />
+  <meta name="author" content="Fitlife Community" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fitlife Community | Fitness, Wellness & Healthy Living" />
+  <meta 
+    property="og:description" 
+    content="Join Fitlife Community — a holistic fitness and wellness community empowering individuals and communities to live healthier lives."
+  />
+  <meta property="og:image" content="/images/logo.png" />
+  <meta property="og:url" content="https://fitlifecommunity.com" />
+  <meta property="og:site_name" content="Fitlife Community" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fitlife Community | Fitness, Wellness & Healthy Living" />
+  <meta 
+    name="twitter:description" 
+    content="Empowering individuals and communities through holistic fitness, wellness, and healthy living."
+  />
+  <meta name="twitter:image" content="/images/logo.png" />
+
+  <!-- Favicon (using logo) -->
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
+
+  <!-- Theme Color (Mobile browsers) -->
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Tailwind CSS (Browser CDN) -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4" defer></script>
 </head>
 <body class="bg-white">
 
 <%- include('../partials/header') %>
+
+<section id="heroSection" class="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black transition-all duration-700">
+  
+  <video 
+    id="heroVideo"
+    class="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-1000"
+    poster="/images/who-is.png"
+    playsinline
+  >
+    <source src="/videos/Rebirth of a Queen - Empowering Women and Communities - Non-Profit Organization Kenya.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div id="heroContent" class="relative z-10 text-center px-6 max-w-4xl transition-all duration-500">
+    <h1 class="text-white text-5xl md:text-7xl font-black uppercase leading-tight mb-6">
+      Empowering <span class="text-[#F9BC06]">Communities</span> <br> Through Sport.
+    </h1>
+    
+    <div class="flex flex-col items-center gap-4">
+      <button 
+        id="playBtn"
+        class="group relative z-30 flex items-center justify-center w-20 h-20 bg-[#F9BC06] rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 active:scale-95"
+      >
+        <svg id="playIcon" class="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg id="pauseIcon" class="hidden w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+      <span id="playText" class="text-white text-[10px] font-bold uppercase tracking-[0.2em]">Watch Our Story</span>
+    </div>
+  </div>
+
+  <div id="bottomCurve" class="absolute bottom-0 left-0 w-full h-24 bg-white transition-transform duration-500" style="clip-path: ellipse(150% 100% at 50% 100%);"></div>
+</section>
+
+<script>
+  const video = document.getElementById('heroVideo');
+  const playBtn = document.getElementById('playBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  
+  // Elements to hide/modify
+  const navbar = document.getElementById('navbar'); // Ensure your nav has this ID
+  const heroContent = document.getElementById('heroContent');
+  const heroSection = document.getElementById('heroSection');
+  const bottomCurve = document.getElementById('bottomCurve');
+  const playText = document.getElementById('playText');
+
+  playBtn.addEventListener('click', () => {
+    if (video.paused) {
+      video.volume = 0.1; 
+      video.play();
+      
+      // 1. Hide Text and UI elements
+      heroContent.querySelectorAll('h1').forEach(el => el.classList.add('opacity-0', 'pointer-events-none'));
+      playText.classList.add('opacity-0');
+      
+      // 2. Hide Bottom Curve & Navbar
+      bottomCurve.classList.add('translate-y-full');
+      if(navbar) navbar.classList.add('-translate-y-full', 'opacity-0');
+      
+      // 3. Make Video Full Focus
+      video.classList.remove('opacity-60');
+      video.classList.add('opacity-100');
+      
+      // 4. Update Button
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+      
+      // Move button to corner or make it subtle? 
+      // For now, we'll keep it centered but you could add:
+      // playBtn.classList.add('opacity-20', 'hover:opacity-100');
+      
+    } else {
+      video.pause();
+      
+      // Bring everything back
+      heroContent.querySelectorAll('h1').forEach(el => el.classList.remove('opacity-0', 'pointer-events-none'));
+      playText.classList.remove('opacity-0');
+      bottomCurve.classList.remove('translate-y-full');
+      if(navbar) navbar.classList.remove('-translate-y-full', 'opacity-0');
+      
+      video.classList.add('opacity-60');
+      video.classList.remove('opacity-100');
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+    }
+  });
+
+  // Optional: Bring everything back when video ends
+  video.onended = function() {
+      playBtn.click(); // Triggers the 'pause' logic to reset UI
+  };
+</script>
 
 <section class="py-20 px-6 bg-white text-center">
   <div class="max-w-4xl mx-auto">
