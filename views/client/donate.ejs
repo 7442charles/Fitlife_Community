@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Dynamic SEO (fallback included) -->
+  <title><%= meta?.title || 'Fitlife Community' %></title>
+  <meta name="description" content="<%= meta?.description || 'Fitlife Community – Empowering healthy lifestyles, fitness programs, and community impact.' %>">
+  <meta name="keywords" content="Fitlife Community, fitness, gym, health, wellness, donations, community impact">
+  <meta name="author" content="Fitlife Community">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= meta?.title || 'Fitlife Community' %>">
+  <meta property="og:description" content="<%= meta?.description || 'Empowering healthy lifestyles and community growth.' %>">
+  <meta property="og:url" content="<%= meta?.url || 'https://fitlifecommunity.org' %>">
+  <meta property="og:image" content="<%= meta?.image || '/images/og-image.png' %>">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= meta?.title || 'Fitlife Community' %>">
+  <meta name="twitter:description" content="<%= meta?.description || 'Empowering healthy lifestyles and community growth.' %>">
+  <meta name="twitter:image" content="<%= meta?.image || '/images/og-image.png' %>">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <!-- Pumping Heart Animation -->
+  <style>
+    @keyframes pump {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+    }
+
+    .pumping-heart {
+      display: inline-block;
+      animation: pump 1s infinite ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+  <%- include('../partials/header') %>
+
+  <section class="max-w-3xl mx-auto px-6 py-16">
+    <div class="bg-white shadow-xl rounded-2xl p-8 text-center">
+
+      <h1 class="text-3xl font-extrabold mb-4">Support Our Mission</h1>
+
+      <p class="text-gray-600 mb-8">
+        Your contribution helps us continue empowering lives and building
+        stronger communities.
+      </p>
+
+      <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 mb-6">
+        <p class="text-sm text-gray-500 uppercase tracking-wider mb-2">
+          MPESA Paybill
+        </p>
+        <p class="text-4xl font-black text-black mb-4">
+          522533
+        </p>
+
+        <p class="text-sm text-gray-500 uppercase tracking-wider mb-2">
+          Account Number
+        </p>
+        <p class="text-3xl font-bold text-black">
+          8006446
+        </p>
+      </div>
+
+        <p class="text-lg font-semibold text-gray-800 mt-6 flex items-center justify-center gap-2">
+        Thank you in advance for your donation
+        <span class="pumping-heart">❤️</span>
+        </p>
+
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+
+</body>
+</html>

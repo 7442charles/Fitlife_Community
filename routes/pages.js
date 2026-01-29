@@ -40,11 +40,13 @@ router.get('/our-impact', (req,res)=>{
   });
 });
 
-router.get('/make-donation', (req,res)=>{
-  res.render('client/donation', {
-    meta:{ title:'Make a Donation', description:'Support our mission' }
+router.get('/donate', (req, res) => {
+  res.render('client/donate', {
+    meta: {
+      title: 'Make a Donation',
+      description: 'Support our mission through MPESA donations'
+    }
   });
 });
-
 
 module.exports = router;

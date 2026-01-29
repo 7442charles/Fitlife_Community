@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^8.0.5",
     "csurf": "^1.11.0",
     "dotenv": "^17.2.3",

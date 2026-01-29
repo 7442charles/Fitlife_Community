@@ -37,7 +37,7 @@ app.use((req,res,next)=>{
 });
 
 app.use('/', require('./routes/client'));
-app.use('/auth', require('./routes/auth'));
+app.use('/', require('./routes/auth'));
 app.use('/admin', require('./routes/admin'));
 app.use('/', require('./routes/pages'));
 

@@ -54,7 +54,8 @@
   
   <video 
     id="heroVideo"
-    class="absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-1000"
+    class="absolute inset-0 w-full h-full object-cover md:scale-90 opacity-60 transition-all duration-1000"
+
     poster="/images/who-is.png"
     playsinline
   >
@@ -86,65 +87,118 @@
   <div id="bottomCurve" class="absolute bottom-0 left-0 w-full h-24 bg-white transition-transform duration-500" style="clip-path: ellipse(150% 100% at 50% 100%);"></div>
 </section>
 
+<!-- Desktop Video Modal -->
+<div
+  id="videoModal"
+  class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/80 backdrop-blur-sm"
+>
+  <div class="relative w-[90%] max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl">
+    
+    <!-- Close Button -->
+    <button
+      id="closeModal"
+      class="absolute top-4 right-4 z-50 bg-[#F9BC06] text-black w-10 h-10 rounded-full flex items-center justify-center font-black hover:scale-110 transition"
+    >
+      ✕
+    </button>
+
+    <video
+      id="modalVideo"
+      class="w-full h-full object-contain"
+      controls
+      playsinline
+    >
+      <source src="/videos/Rebirth of a Queen - Empowering Women and Communities - Non-Profit Organization Kenya.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
 <script>
-  const video = document.getElementById('heroVideo');
   const playBtn = document.getElementById('playBtn');
+
+  // Inline (mobile)
+  const heroVideo = document.getElementById('heroVideo');
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
-  
-  // Elements to hide/modify
-  const navbar = document.getElementById('navbar'); // Ensure your nav has this ID
   const heroContent = document.getElementById('heroContent');
-  const heroSection = document.getElementById('heroSection');
   const bottomCurve = document.getElementById('bottomCurve');
   const playText = document.getElementById('playText');
 
+  // Modal (desktop)
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const closeModal = document.getElementById('closeModal');
+
+  // Detect desktop
+  const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
+
   playBtn.addEventListener('click', () => {
-    if (video.paused) {
-      video.volume = 0.1; 
-      video.play();
-      
-      // 1. Hide Text and UI elements
-      heroContent.querySelectorAll('h1').forEach(el => el.classList.add('opacity-0', 'pointer-events-none'));
+
+    /* ===========================
+       DESKTOP → MODAL VIDEO
+    ============================ */
+    if (isDesktop()) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      modalVideo.currentTime = 0;
+      modalVideo.volume = 0.8;
+      modalVideo.play();
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+
+    /* ===========================
+       MOBILE → INLINE VIDEO
+    ============================ */
+    if (heroVideo.paused) {
+      heroVideo.volume = 0.1;
+      heroVideo.play();
+
+      heroContent.querySelectorAll('h1').forEach(el =>
+        el.classList.add('opacity-0', 'pointer-events-none')
+      );
       playText.classList.add('opacity-0');
-      
-      // 2. Hide Bottom Curve & Navbar
       bottomCurve.classList.add('translate-y-full');
-      if(navbar) navbar.classList.add('-translate-y-full', 'opacity-0');
-      
-      // 3. Make Video Full Focus
-      video.classList.remove('opacity-60');
-      video.classList.add('opacity-100');
-      
-      // 4. Update Button
+
+      heroVideo.classList.remove('opacity-60');
+      heroVideo.classList.add('opacity-100');
+
       playIcon.classList.add('hidden');
       pauseIcon.classList.remove('hidden');
-      
-      // Move button to corner or make it subtle? 
-      // For now, we'll keep it centered but you could add:
-      // playBtn.classList.add('opacity-20', 'hover:opacity-100');
-      
     } else {
-      video.pause();
-      
-      // Bring everything back
-      heroContent.querySelectorAll('h1').forEach(el => el.classList.remove('opacity-0', 'pointer-events-none'));
+      heroVideo.pause();
+
+      heroContent.querySelectorAll('h1').forEach(el =>
+        el.classList.remove('opacity-0', 'pointer-events-none')
+      );
       playText.classList.remove('opacity-0');
       bottomCurve.classList.remove('translate-y-full');
-      if(navbar) navbar.classList.remove('-translate-y-full', 'opacity-0');
-      
-      video.classList.add('opacity-60');
-      video.classList.remove('opacity-100');
+
+      heroVideo.classList.add('opacity-60');
+      heroVideo.classList.remove('opacity-100');
+
       playIcon.classList.remove('hidden');
       pauseIcon.classList.add('hidden');
     }
   });
 
-  // Optional: Bring everything back when video ends
-  video.onended = function() {
-      playBtn.click(); // Triggers the 'pause' logic to reset UI
-  };
+  /* ===========================
+     MODAL CLOSE LOGIC
+  ============================ */
+  closeModal.addEventListener('click', closeVideoModal);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeVideoModal();
+  });
+
+  function closeVideoModal() {
+    modalVideo.pause();
+    modalVideo.currentTime = 0;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+  }
 </script>
+
 
 <section class="py-20 px-6 bg-white text-center">
   <div class="max-w-4xl mx-auto">
