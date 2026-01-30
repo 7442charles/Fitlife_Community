@@ -1,33 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include('../partials/seo') %>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Title -->
+  <title>Contact Us | Fitlife Community</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Reach out to Fitlife Community. We're here to help you with fitness, wellness, programs, and any inquiries about our community initiatives.">
+  <meta name="keywords" content="Fitlife Community, contact, fitness, wellness, gym, inquiries">
+  <meta name="author" content="Fitlife Community">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact Us | Fitlife Community" />
+  <meta property="og:description" content="Reach out to Fitlife Community for inquiries about fitness, wellness, and our community programs." />
+  <meta property="og:image" content="/images/fitness-wellness.png" />
+  <meta property="og:url" content="https://fitlifecommunity.com/contact-us" />
+  <meta property="og:site_name" content="Fitlife Community" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Us | Fitlife Community" />
+  <meta name="twitter:description" content="Get in touch with Fitlife Community to learn more about our wellness programs and initiatives." />
+  <meta name="twitter:image" content="/images/fitness-wellness.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
+
+  <!-- Tailwind CSS -->
   <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50">
 
 <%- include('../partials/header') %>
 
-<section class="max-w-4xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
+<!-- Hero / Page Banner -->
+<section class="relative bg-gradient-to-r from-[#F8BD1D] to-[#F26836] py-20">
+  <div class="max-w-4xl mx-auto text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-black text-white mb-4">Contact Us</h1>
+    <p class="text-white text-lg md:text-xl">We'd love to hear from you! Reach out for inquiries about programs, wellness, or community initiatives.</p>
+  </div>
+</section>
 
-  <form method="POST" action="/contact-us" class="space-y-4 bg-white p-6 shadow rounded">
+<!-- Contact Form Section -->
+<section class="max-w-4xl mx-auto p-6 -mt-12 relative z-10">
+  <form method="POST" action="/contact-us" class="space-y-6 bg-white p-8 shadow-xl rounded-3xl border-t-8 border-[#F8BD1D]">
     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
     <input name="name" placeholder="Your Name"
-      class="w-full border p-2 rounded">
+      class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F8BD1D]">
 
     <input name="email" placeholder="Email Address"
-      class="w-full border p-2 rounded">
+      class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F8BD1D]">
 
-    <textarea name="message" placeholder="Your Message"
-      class="w-full border p-2 rounded"></textarea>
+    <textarea name="message" placeholder="Your Message" rows="5"
+      class="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F8BD1D]"></textarea>
 
-    <button class="bg-black text-white px-6 py-2 rounded">
+    <button class="bg-[#F26836] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#F8BD1D] hover:text-black transition-colors">
       Send Message
     </button>
   </form>
 </section>
+
+<!-- Contact Info Section -->
+<section class="max-w-4xl mx-auto px-6 py-16">
+  <div class="bg-white rounded-3xl shadow-lg p-8 border-t-8 border-[#F8BD1D] flex flex-col items-center text-center">
+    <h2 class="text-3xl font-extrabold text-[#064E3B] mb-4">Our Address</h2>
+    <p class="text-gray-700 text-lg">123 Fitlife Street, Wellness City, Kenya</p>
+
+    <h2 class="text-3xl font-extrabold text-[#064E3B] mt-8 mb-4">Contact Info</h2>
+    <p class="text-gray-700 text-lg"><span class="font-bold">Email:</span> info@fitlifecommunity.com</p>
+    <p class="text-gray-700 text-lg"><span class="font-bold">Phone:</span> +254 700 000 000</p>
+  </div>
+</section>
+
+
 
 <%- include('../partials/footer') %>
 
