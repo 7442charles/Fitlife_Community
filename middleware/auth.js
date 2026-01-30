@@ -1,5 +1,5 @@
 
 exports.adminOnly = (req,res,next)=>{
   if(req.isAuthenticated() && req.user.role==='admin') return next();
-  res.redirect('/auth/login');
+  res.redirect('/login');
 };

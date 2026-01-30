@@ -1,34 +1,205 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard | Fitlife</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --gold: #F8BD1D;
+      --orange: #F26836;
+    }
+    .bg-brand-gold { background-color: var(--gold); }
+    .bg-brand-orange { background-color: var(--orange); }
+    .text-brand-orange { color: var(--orange); }
+    .focus-ring:focus { outline: none; ring: 2px; ring-color: var(--gold); border-color: var(--gold); }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+  </style>
 </head>
-<body class="p-10">
-<h1 class="text-3xl mb-4">Admin</h1>
 
-<form method="POST" action="/admin/blog">
-<input type="hidden" name="_csrf" value="<%= csrfToken %>">
-<input name="title" class="border p-2 w-full mb-2">
-<textarea id="editor" name="content"></textarea>
-<button class="bg-black text-white px-4 py-2 mt-2">Add Blog</button>
-</form>
+<body class="bg-slate-50 min-h-screen flex text-slate-800">
 
-<ul class="mt-6">
-<% blogs.forEach(b=>{ %>
-<li class="flex justify-between">
-<%= b.title %>
-<form method="POST" action="/admin/blog/<%= b.id %>/delete">
-<input type="hidden" name="_csrf" value="<%= csrfToken %>">
-<button class="text-red-500">Delete</button>
-</form>
-</li>
-<% }) %>
-</ul>
+<aside class="w-72 bg-black text-white flex flex-col sticky top-0 h-screen shadow-xl">
+  <div class="p-8">
+    <div class="flex items-center gap-3">
+        <!-- <div class="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center">
+            <i class="fa-solid fa-dumbbell text-black text-xl"></i>
+        </div> -->
+        <span class="text-xl font-black tracking-tighter italic">FITLIFE <span class="text-brand-orange">ADMIN</span></span>
+    </div>
+  </div>
+
+  <nav class="flex-1 px-6 space-y-1">
+    <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-4">Content Management</p>
+    <a href="#hero" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/10 group">
+      <i class="fa-solid fa-pager text-gray-400 group-hover:text-brand-gold"></i> Hero Section
+    </a>
+    <a href="#about" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/10 group">
+      <i class="fa-solid fa-play text-gray-400 group-hover:text-brand-gold"></i> About Video
+    </a>
+    <a href="#blogs" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/10 group">
+      <i class="fa-solid fa-pen-nib text-gray-400 group-hover:text-brand-gold"></i> Blogs
+    </a>
+    <a href="#gallery" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/10 group">
+      <i class="fa-solid fa-images text-gray-400 group-hover:text-brand-gold"></i> Gallery
+    </a>
+    <a href="#programs" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/10 group">
+      <i class="fa-solid fa-calendar-check text-gray-400 group-hover:text-brand-gold"></i> Programs
+    </a>
+  </nav>
+
+  <div class="p-6">
+    <a href="/logout" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-red-400 transition-all">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+  </div>
+</aside>
+
+<main class="flex-1 p-8 lg:p-12 overflow-y-auto">
+
+  <header class="flex justify-between items-end mb-10">
+    <div>
+      <h1 class="text-4xl font-black tracking-tight text-slate-900">Dashboard</h1>
+      <p class="text-slate-500 font-medium">Welcome back, <%= user.username %></p>
+    </div>
+    <div class="hidden md:flex items-center gap-4 bg-white p-2 rounded-2xl shadow-sm border border-slate-100 px-4">
+        <div class="text-right leading-tight">
+            <p class="text-sm font-bold"><%= user.username %></p>
+            <p class="text-[10px] text-gray-400 uppercase font-black">Super Admin</p>
+        </div>
+        <div class="w-10 h-10 bg-slate-200 rounded-xl overflow-hidden">
+            <img src="https://ui-avatars.com/api/?name=<%= user.username %>&background=F8BD1D&color=000" alt="avatar">
+        </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-wider">Live Blogs</p>
+            <h3 class="text-3xl font-black"><%= blogs.length %></h3>
+        </div>
+        <div class="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-brand-orange">
+            <i class="fa-solid fa-newspaper text-xl"></i>
+        </div>
+    </div>
+    <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-wider">Gallery Items</p>
+            <h3 class="text-3xl font-black">24</h3>
+        </div>
+        <div class="w-12 h-12 bg-yellow-50 rounded-2xl flex items-center justify-center text-brand-gold">
+            <i class="fa-solid fa-photo-film text-xl"></i>
+        </div>
+    </div>
+    <!-- <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div>
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-wider">System Status</p>
+            <h3 class="text-xl font-black text-green-500">Online</h3>
+        </div>
+        <div class="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center text-green-500">
+            <i class="fa-solid fa-circle-check text-xl"></i>
+        </div>
+    </div> -->
+  </div>
+
+  <div class="space-y-10 max-w-5xl">
+    <section id="hero" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+      <div class="flex items-center gap-3 mb-6">
+          <i class="fa-solid fa-rocket text-brand-orange"></i>
+          <h2 class="text-xl font-black uppercase tracking-tight">Home Page Hero</h2>
+      </div>
+
+      <form method="POST" action="/admin/hero" class="space-y-4">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input name="headline" placeholder="Main Headline" class="w-full border-slate-200 border rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-gold outline-none transition-all">
+            <input name="video" placeholder="Video URL (Vimeo/YouTube)" class="w-full border-slate-200 border rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-gold outline-none transition-all">
+        </div>
+        <textarea name="subtext" placeholder="Hero Subtext" class="w-full border-slate-200 border rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-gold outline-none transition-all h-24"></textarea>
+
+        <button class="bg-black text-white font-bold px-8 py-3 rounded-xl hover:bg-brand-orange transition-colors">
+          Save Changes
+        </button>
+      </form>
+    </section>
+
+    <section id="blogs" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+      <div class="flex items-center gap-3 mb-6">
+          <i class="fa-solid fa-feather-pointed text-brand-orange"></i>
+          <h2 class="text-xl font-black uppercase tracking-tight">Manage Blogs</h2>
+      </div>
+
+      <form method="POST" action="/admin/blog" class="space-y-4">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input name="title" placeholder="Blog Title" class="w-full border-slate-200 border rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-gold outline-none transition-all font-bold">
+        <div class="rounded-xl overflow-hidden border border-slate-200">
+            <textarea id="editor" name="content"></textarea>
+        </div>
+        <button class="bg-brand-gold text-black font-black px-8 py-3 rounded-xl hover:scale-105 transition-all shadow-lg shadow-yellow-100">
+          Publish Post
+        </button>
+      </form>
+
+      <div class="mt-10">
+        <h4 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4 px-2">Recent Posts</h4>
+        <div class="space-y-2">
+          <% blogs.forEach(b=>{ %>
+            <div class="flex justify-between items-center bg-slate-50 p-4 rounded-2xl hover:bg-slate-100 transition-colors group">
+              <span class="font-bold text-slate-700"><%= b.title %></span>
+              <form method="POST" action="/admin/blog/<%= b.id %>/delete">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:bg-red-500 hover:text-white transition-all">
+                    <i class="fa-solid fa-trash-can text-sm"></i>
+                </button>
+              </form>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+        <div class="flex items-center gap-3 mb-6">
+            <i class="fa-solid fa-cloud-arrow-up text-brand-orange"></i>
+            <h2 class="text-xl font-black uppercase tracking-tight">Gallery Upload</h2>
+        </div>
+  
+      <form method="POST" action="/admin/gallery" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4 items-center bg-slate-50 p-6 rounded-2xl border-2 border-dashed border-slate-200">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="file" name="image" class="flex-1 text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-black file:text-white hover:file:bg-brand-orange">
+        <button class="bg-black text-white px-8 py-3 rounded-xl font-bold">Upload</button>
+      </form>
+    </section>
+  </div>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script>$('#editor').summernote({height:200});</script>
+
+<script>
+  $('#editor').summernote({
+    height: 300,
+    placeholder: 'Share your fitness tips...',
+    theme: 'lite',
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'underline', 'clear']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['table', ['table']],
+      ['insert', ['link', 'picture']],
+      ['view', ['fullscreen', 'codeview', 'help']]
+    ]
+  });
+</script>
+
 </body>
 </html>
