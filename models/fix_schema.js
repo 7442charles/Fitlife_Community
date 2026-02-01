@@ -28,16 +28,9 @@ async function fixSchema() {
       console.log('"coverImage" column already exists.');
     }
 
-    if (!tableInfo.slug) {
-      console.log('Adding "slug" column to "Blogs" table...');
-      await queryInterface.addColumn('Blogs', 'slug', {
-        type: DataTypes.STRING,
-        allowNull: true
-      });
-      console.log('Success!');
-    } else {
-      console.log('"slug" column already exists.');
-    }
+    console.log('Updating "content" column to LONGTEXT to support large Base64 images...');
+    await sequelize.query('ALTER TABLE Blogs MODIFY COLUMN content LONGTEXT');
+    console.log('Content column updated successfully!');
   } catch (error) {
     console.error('Schema update failed:', error);
   } finally {
